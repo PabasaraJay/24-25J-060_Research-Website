@@ -832,7 +832,64 @@ export default function ResearchWebsite() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {/* Top 3 centered members */}
+          <div className="flex flex-col items-center mb-12">
+            <div className="flex flex-row justify-center gap-8">
+              {[
+                {
+                  name: "Dr. Dinuka R. Wijendra",
+                  role: "Supervisor",
+                  degree: "Faculty of Computing | Information Technology",
+                  email: "dinuka.w@sliit.lk",
+                  image: "/placeholder.svg?height=200&width=200",
+                  achievements: ["AI Researcher", "Sleep Science Expert"],
+                },
+                {
+                  name: "Ms. Chathushki Chathumali",
+                  role: "Co-Supervisor",
+                  degree: "Faculty of Computing | Information Technology",
+                  email: "chathushki.c@sliit.lk",
+                  image: "/placeholder.svg?height=200&width=200",
+                  achievements: ["Biomedical Engineer", "Data Science Mentor"],
+                },
+                {
+                  name: "Prof. Priyantha Gamini Jayasinghe",
+                  role: "External Supervisor",
+                  degree: "Consultant Clinical Psychologist/Psychiatrist",
+                  email: "ghi.fernando@university.edu",
+                  image: "/placeholder.svg?height=200&width=200",
+                  achievements: ["Clinical Psychologist", "Behavioral Specialist"],
+                },
+              ].map((member, index) => (
+                <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 w-72">
+                  <CardHeader>
+                    <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-700 to-blue-500 rounded-full flex items-center justify-center">
+                      <Users className="w-16 h-16 text-white" />
+                    </div>
+                    <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
+                    <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
+                    <CardDescription className="text-gray-600">{member.degree}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-center space-x-2 mb-4">
+                      <Mail className="w-4 h-4 text-gray-500" />
+                      <span className="text-sm text-gray-600">{member.email}</span>
+                    </div>
+                    <div className="space-y-2">
+                      {member.achievements.map((achievement, i) => (
+                        <Badge key={i} variant="secondary" className="mr-2">
+                          {achievement}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* 4 members in a single row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 name: "J A P M Jayamanne",
