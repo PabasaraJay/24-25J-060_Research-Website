@@ -83,7 +83,7 @@ export default function ResearchWebsite() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-800 rounded-lg flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-white" />
+                <Moon className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-blue-900">Goodnight</span>
             </div>
@@ -118,7 +118,7 @@ export default function ResearchWebsite() {
         <div className="container mx-auto px-4">
           <div className="text-center text-white">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-6">
-              <Moon className="w-5 h-5 text-yellow-300" />
+              <Smartphone className="w-5 h-5 text-yellow-300" />
               <span className="text-sm font-medium">24-25J-060 Research Project Website</span>
             </div>
 
@@ -1086,7 +1086,7 @@ export default function ResearchWebsite() {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-800 to-blue-800 rounded-lg flex items-center justify-center">
-                <Smartphone className="w-5 h-5 text-white" />
+                <Moon className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold">Goodnight Research Project</span>
             </div>
