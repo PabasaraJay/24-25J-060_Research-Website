@@ -23,7 +23,9 @@ import {
   Trophy,
   Activity,
   ArrowUp,
+  Linkedin,
 } from "lucide-react"
+import Image from 'next/image'
 
 export default function ResearchWebsite() {
   const [activeSection, setActiveSection] = useState("home")
@@ -841,46 +843,61 @@ export default function ResearchWebsite() {
                   role: "Supervisor",
                   degree: "Faculty of Computing | Information Technology",
                   email: "dinuka.w@sliit.lk",
-                  image: "/placeholder.svg?height=200&width=200",
-                  achievements: ["AI Researcher", "Sleep Science Expert"],
+                  image: "/Picture5.jpg",
+                  linkedin: "https://www.linkedin.com/in/dinuka-wijendra-b87002245/",
+                  googleScholar: "https://scholar.google.com/citations?user=e5OUc6cAAAAJ&hl=en",
                 },
                 {
                   name: "Ms. Chathushki Chathumali",
                   role: "Co-Supervisor",
                   degree: "Faculty of Computing | Information Technology",
                   email: "chathushki.c@sliit.lk",
-                  image: "/placeholder.svg?height=200&width=200",
-                  achievements: ["Biomedical Engineer", "Data Science Mentor"],
+                  image: "/Picture6.jpeg",
+                  linkedin: "https://www.linkedin.com/in/chathushki-chathumali-b1b865199/",
+                  googleScholar: "https://www.researchgate.net/profile/Chathushki-Chathumali",
                 },
                 {
                   name: "Prof. Priyantha Gamini Jayasinghe",
                   role: "External Supervisor",
                   degree: "Consultant Clinical Psychologist/Psychiatrist",
-                  email: "ghi.fernando@university.edu",
-                  image: "/placeholder.svg?height=200&width=200",
-                  achievements: ["Clinical Psychologist", "Behavioral Specialist"],
+                  email: "",
+                  image: "/Picture7.jpg",
+                  linkedin: "https://www.linkedin.com/in/prof-priyanthe-gamini-jayasinghe-9212846a/",
+                  googleScholar: "#",
                 },
               ].map((member, index) => (
                 <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 w-72">
                   <CardHeader>
-                    <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-700 to-blue-500 rounded-full flex items-center justify-center">
-                      <Users className="w-16 h-16 text-white" />
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                      <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full" />
                     </div>
                     <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
                     <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
                     <CardDescription className="text-gray-600">{member.degree}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-center space-x-2 mb-4">
-                      <Mail className="w-4 h-4 text-gray-500" />
-                      <span className="text-sm text-gray-600">{member.email}</span>
-                    </div>
-                    <div className="space-y-2">
-                      {member.achievements.map((achievement, i) => (
-                        <Badge key={i} variant="secondary" className="mr-2">
-                          {achievement}
-                        </Badge>
-                      ))}
+                    <div className="flex items-center justify-center space-x-4 mb-4">
+                      {member.email && member.email.includes('@') && (
+                        <a href={`mailto:${member.email}`}
+                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                          <Mail className="w-5 h-5" />
+                          <span className="text-sm">Email</span>
+                        </a>
+                      )}
+                      {member.linkedin && (
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
+                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                          <Linkedin className="w-5 h-5" />
+                          <span className="text-sm">LinkedIn</span>
+                        </a>
+                      )}
+                      {member.googleScholar && (
+                         <a href={member.googleScholar} target="_blank" rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                              <BookOpen className="w-5 h-5" />
+                              <span className="text-sm">Scholar</span>
+                            </a>
+                        )}
                     </div>
                   </CardContent>
                 </Card>
@@ -896,54 +913,59 @@ export default function ResearchWebsite() {
                 role: "Undergraduate",
                 degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21058950@my.sliit.lk",
-                image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Software Engineer", "Software Qualitiy Assurance Engineer"],
+                image: "/Picture1.jpg",
+                linkedin: "http://www.linkedin.com/in/pabasara-jayamanne",
               },
               {
                 name: "R A N M Rajapaksha",
                 role: "Undergraduate",
                 degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21060830@my.sliit.lk",
-                image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Software Engineer", "Qualitiy Assurance Engineer"],
+                image: "/Picture2.png",
+                linkedin: "https://www.linkedin.com/in/nimesha-rajapaksha",
               },
               {
                 name: "P A D L Anjalee",
                 role: "Undergraduate",
                 degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21023682@my.sliit.lk",
-                image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Software Engineer", "Qualitiy Assurance Engineer"],
+                image: "/Picture3.png",
+                linkedin: "https://www.linkedin.com/in/ludeesha-anjalee",
               },
               {
                 name: "H N Siyambalapitiya",
                 role: "Undergraduate",
                 degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21367458@my.sliit.lk",
-                image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Software Engineer", "Business Analyst"],
+                image: "/Picture4.jpg",
+                linkedin: "http://www.linkedin.com/in/hiruni-siyambalapitiya-80a2a0265",
               },
             ].map((member, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
                 <CardHeader>
-                  <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-purple-700 to-blue-500 rounded-full flex items-center justify-center">
-                    <Users className="w-16 h-16 text-white" />
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
+                    <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full" />
                   </div>
                   <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
                   <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
                   <CardDescription className="text-gray-600">{member.degree}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-center space-x-2 mb-4">
-                    <Mail className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm text-gray-600">{member.email}</span>
-                  </div>
-                  <div className="space-y-2">
-                    {member.achievements.map((achievement, i) => (
-                      <Badge key={i} variant="secondary" className="mr-2">
-                        {achievement}
-                      </Badge>
-                    ))}
+                  <div className="flex items-center justify-center space-x-4 mb-4">
+                    {member.email && member.email.includes('@') && (
+                      <a href={`mailto:${member.email}`}
+                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                        <Mail className="w-5 h-5" />
+                        <span className="text-sm">Email</span>
+                      </a>
+                    )}
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
+                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                        <Linkedin className="w-5 h-5" />
+                        <span className="text-sm">LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -973,7 +995,7 @@ export default function ResearchWebsite() {
                   <h3 className="text-xl font-semibold text-white mb-2">Email Us</h3>
                   <p className="text-blue-100 mb-2">For research inquiries and collaboration</p>
                   <a href="mailto:sleepresearch@university.edu" className="text-yellow-300 hover:text-yellow-200">
-                    sleepresearch@university.edu
+                    goodnight@gmail.com
                   </a>
                 </div>
               </div>
