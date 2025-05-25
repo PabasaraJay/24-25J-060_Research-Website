@@ -19,15 +19,21 @@ import {
   Phone,
   MapPin,
   Zap,
+  MessageSquare,
+  Trophy,
+  Activity,
+  ArrowUp,
 } from "lucide-react"
 
 export default function ResearchWebsite() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [showTopArrow, setShowTopArrow] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      setShowTopArrow(window.scrollY > 300)
 
       // Update active section based on scroll position
       const sections = ["home", "domain", "milestones", "documents", "presentations", "about", "contact"]
@@ -159,76 +165,378 @@ export default function ResearchWebsite() {
       </section>
 
       {/* Domain Section */}
-      <section id="domain" className="py-20 bg-gray-50">
+      <section id="domain" className="py-24 bg-[#f8fafc]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="bg-purple-200 text-purple-900 mb-4">Research Domain</Badge>
-            <h2 className="text-4xl font-bold text-blue-900 mb-6">Research Foundation</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive analysis of existing literature and identification of research gaps in sleep technology
-              studies.
+            <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">Research Foundation</h2>
+            <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">
+              Comprehensive analysis of existing literature and identification of research gaps in sleep technology studies.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Literature Survey",
-                icon: BookOpen,
-                content:
-                  "Comprehensive review of existing research on smartphone usage and sleep patterns, analyzing peer-reviewed studies from the past decade.",
-              },
-              {
-                title: "Research Gap",
-                icon: Target,
-                content:
-                  "Identification of unexplored areas in bedtime technology usage and its correlation with sleep quality metrics.",
-              },
-              {
-                title: "Research Problem",
-                icon: Zap,
-                content:
-                  "Investigating the specific mechanisms by which bedtime smartphone use affects sleep onset, duration, and quality.",
-              },
-              {
-                title: "Research Objectives",
-                icon: Target,
-                content:
-                  "Define measurable goals for understanding smartphone impact on sleep patterns and developing intervention strategies.",
-              },
-              {
-                title: "Methodology",
-                icon: Brain,
-                content:
-                  "Mixed-methods approach combining quantitative sleep data analysis with qualitative user experience studies.",
-              },
-              {
-                title: "Technologies Used",
-                icon: Smartphone,
-                content:
-                  "Sleep tracking applications, smartphone usage monitoring tools, and statistical analysis software for data processing.",
-              },
-            ].map((item, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-purple-700">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-purple-200 rounded-lg flex items-center justify-center">
-                      <item.icon className="w-5 h-5 text-purple-800" />
-                    </div>
-                    <CardTitle className="text-xl text-blue-900">{item.title}</CardTitle>
+          {/* Literature Survey */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Literature Survey</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: Smartphone,
+                  title: "Impact of Bedtime Smartphone Use on Sleep Quality",
+                  color: "bg-blue-100 text-blue-700",
+                  content: (
+                    <>
+                      <span className="block font-semibold">Exelmans & Van den Bulck:</span> Found delayed sleep onset and shorter sleep duration linked to bedtime smartphone use.<br/>
+                      <span className="block font-semibold">Carter et al.:</span> Reviewed studies confirming negative effects of screen time on sleep quality.<br/>
+                      Blue light from screens suppresses melatonin, while cognitive stimulation disrupts circadian rhythms.
+                    </>
+                  ),
+                },
+                {
+                  icon: Moon,
+                  title: "Emotion-Aware Sleep Monitoring Systems",
+                  color: "bg-purple-100 text-purple-700",
+                  content: (
+                    <>
+                      Stress increases sleep latency and reduces REM sleep.<br/>
+                      Facial emotion recognition using CNNs is emerging in real-time emotion detection.<br/>
+                      <span className="block font-semibold">Zhang et al.:</span> Developed a CNN-based system that accurately detects stress-related facial expressions.
+                    </>
+                  ),
+                },
+                {
+                  icon: MessageSquare,
+                  title: "Chatbot-Based Interventions",
+                  color: "bg-green-100 text-green-700",
+                  content: (
+                    <>
+                      Emotional support chatbots (e.g., Woebot, Wysa) use CBT techniques to support mental health.<br/>
+                      Can provide calming dialogue, track stressors, and suggest sleep-enhancing activities.<br/>
+                      <span className="block font-semibold">Fulmer et al.:</span> Users of emotional chatbots experienced reduced stress and better sleep quality.
+                    </>
+                  ),
+                },
+                {
+                  icon: Trophy,
+                  title: "Gamification for Health and Habit Formation",
+                  color: "bg-yellow-100 text-yellow-700",
+                  content: (
+                    <>
+                      Popular platforms like Fitbit and Duolingo use gamified elements such as streaks and rewards.<br/>
+                      <span className="block font-semibold">Seaborn & Fels:</span> Found increased motivation and retention through gamified systems in health apps.
+                    </>
+                  ),
+                },
+                {
+                  icon: Brain,
+                  title: "Machine Learning in Sleep Prediction",
+                  color: "bg-pink-100 text-pink-700",
+                  content: (
+                    <>
+                      Techniques: Neural Networks, Regression, Multi-Task Learning.<br/>
+                      <span className="block font-semibold">Supratak et al.:</span> Used deep learning on EEG for automatic sleep stage classification.<br/>
+                      Multi-modal models using activity, mood, and demographics improve prediction accuracy.
+                    </>
+                  ),
+                },
+                {
+                  icon: Zap,
+                  title: "Our Research Approach",
+                  color: "bg-indigo-100 text-indigo-700",
+                  content: (
+                    <>
+                      Multi-task learning + Polynomial Regression Layer for enhanced prediction and GANs for data augmentation.<br/>
+                      Combining multiple data sources for comprehensive sleep quality assessment.
+                    </>
+                  ),
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white rounded-2xl shadow-md p-6 flex flex-col h-full border border-gray-100">
+                  <div className={`w-12 h-12 flex items-center justify-center rounded-xl mb-4 text-2xl ${item.color}`}>
+                    <item.icon className="w-7 h-7" />
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{item.content}</p>
-                </CardContent>
-              </Card>
-            ))}
+                  <h4 className="font-bold text-lg mb-2 text-blue-900">{item.title}</h4>
+                  <div className="text-gray-500 text-lg leading-relaxed">{item.content}</div>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Research Gap */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Research Gap</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto px-4">
+              {[
+                {
+                  emoji: "1️⃣",
+                  title: "Emotional & Psychological Factors Are Overlooked",
+                  desc: "Most apps track physical data like heart rate or sleep duration—but ignore stress and mood, which strongly influence sleep quality.",
+                  gap: "Lack of systems that combine emotional state detection with real-time sleep interventions.",
+                  gapIcon: "🧠",
+                  color: "bg-blue-50 border-blue-200",
+                },
+                {
+                  emoji: "2️⃣",
+                  title: "Underuse of Facial Emotion Recognition",
+                  desc: "Deep learning-based facial recognition (like CNNs) offers real-time mood detection, but sleep apps mostly rely on manual input.",
+                  gap: "Facial emotion recognition has not been integrated into mobile sleep tracking apps for personalized support.",
+                  gapIcon: "📸",
+                  color: "bg-purple-50 border-purple-200",
+                },
+                {
+                  emoji: "3️⃣",
+                  title: "Chatbot Interventions Are Underexplored in Sleep",
+                  desc: "While chatbots help in mental health, few are tailored to sleep improvement or respond to emotional states dynamically.",
+                  gap: "Sleep chatbots lack emotional intelligence and personalized interaction based on real-time user data.",
+                  gapIcon: "💬",
+                  color: "bg-green-50 border-green-200",
+                },
+                {
+                  emoji: "4️⃣",
+                  title: "Gamification in Sleep Apps Is Rare",
+                  desc: "Gamification boosts motivation in health apps—but sleep tools mostly stick to plain logs and charts.",
+                  gap: "Minimal use of rewards, streaks, or interactive visuals to engage users in consistent sleep behavior.",
+                  gapIcon: "🎮",
+                  color: "bg-yellow-50 border-yellow-200",
+                },
+                {
+                  emoji: "5️⃣",
+                  title: "Predictive Models Are Too Narrow",
+                  desc: "Most models predict sleep duration or quality separately, missing the interplay of key factors.",
+                  gap: "Absence of multi-task models that predict both sleep duration & quality using emotional, behavioral, and contextual inputs.",
+                  gapIcon: "🧠",
+                  color: "bg-pink-50 border-pink-200",
+                },
+                {
+                  emoji: "6️⃣",
+                  title: "Poor Personalization & Feedback Loops",
+                  desc: "Many systems use static rules instead of learning from user feedback or behavior over time.",
+                  gap: "Lack of adaptive systems that evolve based on corrections, mood tracking, and personal sleep history.",
+                  gapIcon: "🔄",
+                  color: "bg-indigo-50 border-indigo-200",
+                },
+              ].map((item, idx) => (
+                <div key={idx} className={`rounded-2xl border ${item.color} p-6 shadow-sm flex flex-col h-full bg-white`}> 
+                  <div className="flex items-center mb-3">
+                    <span className="text-2xl mr-2">{item.emoji}</span>
+                    <span className="font-bold text-blue-900 text-base">{item.title}</span>
+                  </div>
+                  <div className="text-gray-500 mb-3 text-lg">{item.desc}</div>
+                  <div className="flex items-center mt-auto">
+                    <span className="text-lg mr-2">{item.gapIcon}</span>
+                    <span className="font-semibold text-xs px-2 py-1 rounded bg-gray-100 text-blue-800">Gap:</span>
+                    <span className="ml-2 text-lg text-gray-500">{item.gap}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Research Problem */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Research Problem</h3>
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="rounded-2xl bg-blue-50 border border-blue-200 p-8 shadow-sm text-center">
+                <p className="text-xl md:text-2xl text-gray-500 font-medium leading-relaxed">
+                  How can we design a non-intrusive, adaptive, and emotion-aware system that holistically <br />
+                  improves sleep quality among young adults by monitoring bedtime smartphone usage, <br />
+                  providing personalized and interactive interventions, and encouraging healthier sleep habits <br />
+                  through gamified engagement?
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Research Objectives */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Research Objectives</h3>
+            <div className="max-w-7xl mx-auto px-4 flex flex-col gap-6">
+              {[
+                {
+                  title: "Design & Develop a Smart Sleep Management System",
+                  desc: "Create an all-in-one system using machine learning, behavioral analytics, and computer vision to improve sleep quality for young adults and students.",
+                },
+                {
+                  title: "Predict & Visualize Sleep Patterns",
+                  desc: "Use intelligent models to forecast individual sleep duration and quality—presented through intuitive and interactive visualizations.",
+                },
+                {
+                  title: "Monitor Emotions & Stress in Real Time",
+                  desc: "Utilize facial recognition (via computer vision) to detect emotional states like stress or fatigue, which impact sleep onset and continuity.",
+                },
+                {
+                  title: "Analyze Smartphone Usage Before Sleep",
+                  desc: "Track pre-bedtime smartphone habits and identify patterns that affect circadian rhythm and sleep quality.",
+                },
+                {
+                  title: "Deliver Personalized Sleep Interventions",
+                  desc: "Use a chatbot to offer tailored suggestions based on mood, behavior, and usage trends—context-aware and always accessible.",
+                },
+                {
+                  title: "Integrate Emotion-Aware Feedback & Behavioral Nudging",
+                  desc: "Combine real-time emotion tracking with subtle prompts and strategies to help users improve routines and build healthier habits.",
+                },
+                {
+                  title: "Apply Gamification for Engagement",
+                  desc: "Encourage long-term use and habit formation with rewards, streaks, and motivational visuals.",
+                },
+                {
+                  title: "Empower Long-Term Well-being",
+                  desc: "Support both physiological and psychological aspects of sleep health, promoting sustainable improvements in user lifestyle.",
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100">
+                  <div className="font-bold text-blue-900 mb-1 text-base">{item.title}</div>
+                  <div className="text-gray-500 text-lg leading-relaxed">{item.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Methodology */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Methodology</h3>
+            <div className="max-w-7xl mx-auto px-4 flex flex-col gap-6">
+              {[
+                {
+                  step: 1,
+                  title: "Requirements Analysis",
+                  points: [
+                    "Problem Definition",
+                    "Target User Identification (Young Adults Aged 20–30)",
+                    "Functional & Non-functional Requirements",
+                    "Survey Design & Data Collection",
+                  ],
+                },
+                {
+                  step: 2,
+                  title: "System Architecture & Design",
+                  points: [
+                    "Overall System Architecture",
+                    "Component-wise Architecture (Emotion Detection, Chatbot, Sleep Prediction, Visualization)",
+                    "UI/UX Wireframes and Navigation Flow",
+                    "Technology Stack Selection",
+                  ],
+                },
+                {
+                  step: 3,
+                  title: "Integration & Communication",
+                  points: [
+                    "RESTful API Development (Node.js & Flask)",
+                    "Database Integration (MongoDB)",
+                    "Secure Data Flow between Components",
+                    "Mobile App and Backend Integration",
+                  ],
+                },
+                {
+                  step: 4,
+                  title: "Testing & Evaluation",
+                  points: [
+                    "Unit Testing (Frontend, Backend, ML Models)",
+                    "Integration Testing",
+                    "Model Evaluation Metrics (MAE, RMSE, Accuracy, R²)",
+                    "Usability Testing with Target Users",
+                    "Stress Testing and Error Handling",
+                  ],
+                },
+                {
+                  step: 5,
+                  title: "Deployment",
+                  points: [
+                    "Mobile App Deployment (React Native + Expo)",
+                    "Backend & Model Deployment (Flask API, Node.js Server)",
+                    "Database Hosting (MongoDB Atlas)",
+                    "LLM & Emotion Model Hosting Strategy",
+                  ],
+                },
+                {
+                  step: 6,
+                  title: "Monitoring & Maintenance",
+                  points: [
+                    "System Monitoring (Logs, Analytics)",
+                    "Feedback Handling & Iterative Improvements",
+                    "Performance Monitoring of ML Models",
+                  ],
+                },
+                {
+                  step: 7,
+                  title: "Commercialization & Ethical Considerations",
+                  points: [
+                    "Target Market & Value Proposition",
+                    "User Privacy & Data Security",
+                    "Ethical Use of Emotion Detection & AI",
+                  ],
+                },
+                {
+                  step: 8,
+                  title: "Documentation",
+                  points: [
+                    "User Manuals & Guides",
+                    "Research Paper & Final Report Preparation",
+                  ],
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100">
+                  <div className="flex items-center mb-2">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold mr-3">{item.step}</span>
+                    <span className="font-bold text-blue-900 text-base">{item.title}</span>
+                  </div>
+                  <ul className="list-disc pl-12 text-gray-500 text-lg space-y-1">
+                    {item.points.map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Technologies Used */}
+          <div className="mb-4">
+            <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Technologies Used</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+              {[
+                {
+                  title: "Backend Technologies",
+                  items: ["Node.js", "Flask", "OS (Python Library)"]
+                },
+                {
+                  title: "Frontend Technologies",
+                  items: ["React.js"]
+                },
+                {
+                  title: "Database",
+                  items: ["MongoDB"]
+                },
+                {
+                  title: "Deep Learning & Machine Learning Libraries",
+                  items: ["TensorFlow", "Keras", "Scikit-learn (sklearn)", "Pickle"]
+                },
+                {
+                  title: "Computer Vision & Image Processing",
+                  items: ["OpenCV", "Transfer Learning with CNN"]
+                },
+                {
+                  title: "Data Handling & Analysis",
+                  items: ["NumPy", "Pandas"]
+                },
+              ].map((cat, idx) => (
+                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100 flex flex-col h-full">
+                  <div className="font-bold text-blue-900 mb-2 text-base">{cat.title}</div>
+                  <ul className="list-disc pl-5 text-gray-500 text-lg space-y-1">
+                    {cat.items.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* Milestones Section */}
-      <section id="milestones" className="py-20 bg-white">
+      <section id="milestones" className="py-12 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="bg-blue-100 text-blue-700 mb-4">Project Timeline</Badge>
@@ -529,30 +837,34 @@ export default function ResearchWebsite() {
               {
                 name: "J A P M Jayamanne",
                 role: "Undergraduate",
+                degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21058950@my.sliit.lk",
                 image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Sleep Research Specialist", "Data Analysis Expert"],
+                achievements: ["Software Engineer", "Software Qualitiy Assurance Engineer"],
               },
               {
                 name: "R A N M Rajapaksha",
                 role: "Undergraduate",
+                degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21060830@my.sliit.lk",
                 image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Statistical Analysis", "Mobile Technology Research"],
+                achievements: ["Software Engineer", "Qualitiy Assurance Engineer"],
               },
               {
                 name: "P A D L Anjalee",
                 role: "Undergraduate",
+                degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21023682@my.sliit.lk",
                 image: "/placeholder.svg?height=200&width=200",
-                achievements: ["User Experience Design", "Behavioral Studies"],
+                achievements: ["Software Engineer", "Qualitiy Assurance Engineer"],
               },
               {
                 name: "H N Siyambalapitiya",
                 role: "Undergraduate",
+                degree: "BSc(Hons) in Information Technology Specializing in Information Technology",
                 email: "it21367458@my.sliit.lk",
                 image: "/placeholder.svg?height=200&width=200",
-                achievements: ["Project Management", "Technical Documentation"],
+                achievements: ["Software Engineer", "Business Analyst"],
               },
             ].map((member, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
@@ -562,6 +874,7 @@ export default function ResearchWebsite() {
                   </div>
                   <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
                   <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
+                  <CardDescription className="text-gray-600">{member.degree}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-center space-x-2 mb-4">
@@ -705,6 +1018,17 @@ export default function ResearchWebsite() {
           </div>
         </div>
       </footer>
+
+      {/* Back to Top Arrow */}
+      {showTopArrow && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-8 right-8 z-50 bg-blue-900 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 flex items-center justify-center"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="w-6 h-6" />
+        </button>
+      )}
     </div>
   )
 }
