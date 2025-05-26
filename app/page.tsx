@@ -252,8 +252,8 @@ export default function ResearchWebsite() {
                   color: "bg-blue-100 text-blue-700",
                   content: (
                     <>
-                      <span className="block font-semibold">Exelmans & Van den Bulck:</span> Found delayed sleep onset and shorter sleep duration linked to bedtime smartphone use.<br/>
-                      <span className="block font-semibold">Carter et al.:</span> Reviewed studies confirming negative effects of screen time on sleep quality.<br/>
+                      Exelmans & Van den Bulck Found delayed sleep onset and shorter sleep duration linked to bedtime smartphone use.<br/>
+                      Carter Reviewed studies confirming negative effects of screen time on sleep quality.<br/>
                       Blue light from screens suppresses melatonin, while cognitive stimulation disrupts circadian rhythms.
                     </>
                   ),
