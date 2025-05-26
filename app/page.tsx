@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import {
   Smartphone,
   Moon,
   Brain,
@@ -27,10 +34,60 @@ import {
 } from "lucide-react"
 import Image from 'next/image'
 
+// Add type definitions for document links and presentation links
+type DocumentLinks = {
+  taf: string;
+  proposals: {
+    [key: string]: string;
+  };
+  checklists: {
+    [key: string]: string;
+  };
+  finalReports: {
+    [key: string]: string;
+  };
+  researchPaper: string;
+}
+
+type PresentationLinks = {
+  [key: string]: string;
+}
+
 export default function ResearchWebsite() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
   const [showTopArrow, setShowTopArrow] = useState(false)
+  const [selectedMember, setSelectedMember] = useState("all")
+
+  // Document links mapping with type
+  const documentLinks: DocumentLinks = {
+    taf: "https://drive.google.com/file/d/1iixsjm6lrcxWMv5-ymuCPovBGfdoufbv/view?usp=sharing",
+    proposals: {
+      "Proposal Document- Jayamanne J A P M": "https://drive.google.com/file/d/1jEI6ivByc-ZRofvG02Qz07t5sw0GmdKL/view?usp=sharing",
+      "Proposal Document- Rajapaksha R A N M": "https://drive.google.com/file/d/181kb_hVcvRjmBBAIThw1sJRqiWQfuSpz/view?usp=sharing",
+      "Proposal Document- Anjalee P A D L": "https://drive.google.com/file/d/19mAjVn4AyTaTcz8leXeD3qIO8DZOYwxZ/view?usp=sharing",
+      "Proposal Document- Siyambalapitiya H N": "https://drive.google.com/file/d/1Ze-pFt7Z4-MWsc_J5XtB0Wc6e8g5Csro/view?usp=sharing"
+    },
+    checklists: {
+      "Checklist Document 1- GitHub Repository": "https://drive.google.com/file/d/1SnXLhAm5xDTyU388m3xV6qrezLPMonKO/view?usp=sharing",
+      "Checklist Document 2- MS Planner Report": "https://docs.google.com/spreadsheets/d/1cP5CC3pZ2KXxYnisQsOp6f0jM_H9nM2k/edit?usp=sharing&ouid=102714868014154463240&rtpof=true&sd=true"
+    },
+    finalReports: {
+      "Final Report- Jayamanne J A P M": "https://drive.google.com/file/d/15lhl5wpz4Jt--WV1pjIVyRe319thtOBW/view?usp=sharing",
+      "Final Report- Rajapaksha R A N M": "https://drive.google.com/file/d/11Tp59AWDR8HqVzli7WyUZiz9bLTd9Gkt/view?usp=share_link",
+      "Final Report- Anjalee P A D L": "https://drive.google.com/file/d/1nbl030zwy4DMyx8Cg0bpdUmaaLuuIYeT/view?usp=sharing",
+      "Final Report- Siyambalapitiya H N": "https://drive.google.com/file/d/1Mn8tQYeHFoklFiobxrj-l_10VxmX1x9L/view?usp=share_link",
+    },
+    researchPaper: "https://drive.google.com/file/d/1R4fviALhwAf4XHfSw8_LrNV0CXLO5Mvb/view?usp=sharing"
+  }
+
+  // Presentation links mapping
+  const presentationLinks: PresentationLinks = {
+    "Proposal Presentation": "https://docs.google.com/presentation/d/1iwtxLMjUcIAqy9SfmQ8czaM4Ujj8YUgR/edit?usp=drive_link&ouid=102714868014154463240&rtpof=true&sd=true",
+    "Progress Presentation 1": "https://docs.google.com/presentation/d/1vGhIqk5dsW5p9zFLxi344PxSDzWAi_Wb/edit?usp=drive_link&ouid=102714868014154463240&rtpof=true&sd=true",
+    "Progress Presentation 2": "https://docs.google.com/presentation/d/1bEJC4GmONhKa7TlfyrJ-g2e8q-RsufhR/edit?usp=drive_link&ouid=102714868014154463240&rtpof=true&sd=true",
+    "Final Presentation": "https://docs.google.com/presentation/d/1Y4CEUm7GlPdiMCEzI7GYq4NhQdMylWDl/edit?usp=drive_link&ouid=102714868014154463240&rtpof=true&sd=true"
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +126,14 @@ export default function ResearchWebsite() {
     { id: "presentations", label: "Presentations", icon: Presentation },
     { id: "about", label: "About Us", icon: Users },
     { id: "contact", label: "Contact", icon: Mail },
+  ]
+
+  const teamMembers = [
+    { id: "all", name: "All Members" },
+    { id: "it21058950", name: "J A P M Jayamanne" },
+    { id: "it21060830", name: "R A N M Rajapaksha" },
+    { id: "it21023682", name: "P A D L Anjalee" },
+    { id: "it21367458", name: "H N Siyambalapitiya" },
   ]
 
   return (
@@ -654,82 +719,178 @@ export default function ResearchWebsite() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Project Charter",
-                type: "PDF",
-                size: "2.3 MB",
-                status: "Available",
-                description: "Initial project scope and objectives document",
-              },
-              {
-                title: "Proposal Document",
-                type: "PDF",
-                size: "4.1 MB",
-                status: "Available",
-                description: "Comprehensive research proposal with methodology",
-              },
-              {
-                title: "Literature Review",
-                type: "PDF",
-                size: "3.8 MB",
-                status: "Available",
-                description: "Systematic review of existing research",
-              },
-              {
-                title: "Data Collection Forms",
-                type: "PDF",
-                size: "1.2 MB",
-                status: "Available",
-                description: "Survey forms and data collection instruments",
-              },
-              {
-                title: "Interim Report",
-                type: "PDF",
-                size: "5.2 MB",
-                status: "In Progress",
-                description: "Mid-project progress and findings report",
-              },
-              {
-                title: "Final Document",
-                type: "PDF",
-                size: "TBD",
-                status: "Pending",
-                description: "Complete research findings and conclusions",
-              },
-            ].map((doc, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <FileText className="w-8 h-8 text-blue-600" />
-                    <Badge
-                      variant={
-                        doc.status === "Available" ? "default" : doc.status === "In Progress" ? "secondary" : "outline"
-                      }
-                    >
-                      {doc.status}
-                    </Badge>
+            {/* TAF Document */}
+            <Card className="hover:shadow-lg transition-all duration-300 col-span-full">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                  <Badge variant="default">Available</Badge>
+                </div>
+                <CardTitle className="text-lg text-blue-900">TAF Document</CardTitle>
+                <CardDescription>
+                  Topic Assessment Form for Research Project
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-blue-900">Topic Assessment Form</p>
+                    <p className="text-sm text-gray-500">1.5 MB</p>
                   </div>
-                  <CardTitle className="text-lg text-blue-900">{doc.title}</CardTitle>
-                  <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <span>{doc.type}</span>
-                    <span>•</span>
-                    <span>{doc.size}</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4">{doc.description}</p>
-                  <Button
-                    variant={doc.status === "Available" ? "default" : "outline"}
-                    disabled={doc.status !== "Available"}
-                    className="w-full"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    {doc.status === "Available" ? "Download" : doc.status}
+                  <Button size="sm" asChild>
+                    <a href={documentLinks.taf} target="_blank" rel="noopener noreferrer">
+                      <FileText className="w-4 h-4 mr-2" />
+                      View
+                    </a>
                   </Button>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Proposal Documents */}
+            <Card className="hover:shadow-lg transition-all duration-300 col-span-full">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                  <Badge variant="default">Available</Badge>
+                </div>
+                <CardTitle className="text-lg text-blue-900">Proposal Documents</CardTitle>
+                <CardDescription>
+                  Research proposal documents for all team members
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { title: "Proposal Document- Jayamanne J A P M", size: "2.1 MB" },
+                    { title: "Proposal Document- Rajapaksha R A N M", size: "2.3 MB" },
+                    { title: "Proposal Document- Anjalee P A D L", size: "2.5 MB" },
+                    { title: "Proposal Document- Siyambalapitiya H N", size: "1.8 MB" }
+                  ].map((doc, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="font-medium text-blue-900">{doc.title}</p>
+                        <p className="text-sm text-gray-500">{doc.size}</p>
+                      </div>
+                      <Button size="sm" asChild>
+                        <a href={documentLinks.proposals[doc.title]} target="_blank" rel="noopener noreferrer">
+                          <FileText className="w-4 h-4 mr-2" />
+                          View
+                        </a>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Checklist Documents */}
+            <Card className="hover:shadow-lg transition-all duration-300 col-span-full">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                  <Badge variant="default">Available</Badge>
+                </div>
+                <CardTitle className="text-lg text-blue-900">Checklist Documents</CardTitle>
+                <CardDescription>
+                  Research and submission checklists for the project
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { 
+                      title: "Checklist Document 1- GitHub Repository",
+                      size: "1.2 MB",
+                      description: "Comprehensive research progress checklist"
+                    },
+                    { 
+                      title: "Checklist Document 2- MS Planner Report",
+                      size: "1.1 MB",
+                      description: "Final submission requirements checklist"
+                    }
+                  ].map((doc, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="font-medium text-blue-900">{doc.title}</p>
+                        <p className="text-sm text-gray-500">{doc.size}</p>
+                      </div>
+                      <Button size="sm" asChild>
+                        <a href={documentLinks.checklists[doc.title]} target="_blank" rel="noopener noreferrer">
+                          <FileText className="w-4 h-4 mr-2" />
+                          View
+                        </a>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Final Reports */}
+            <Card className="hover:shadow-lg transition-all duration-300 col-span-full">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                  <Badge variant="default">Available</Badge>
+                </div>
+                <CardTitle className="text-lg text-blue-900">Final Reports</CardTitle>
+                <CardDescription>
+                  Individual final reports for each team member
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { title: "Final Report- Jayamanne J A P M", size: "3.5 MB" },
+                    { title: "Final Report- Rajapaksha R A N M", size: "4.2 MB" },
+                    { title: "Final Report- Anjalee P A D L", size: "4.8 MB" },
+                    { title: "Final Report- Siyambalapitiya H N", size: "5.1 MB" }
+                  ].map((doc, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div>
+                        <p className="font-medium text-blue-900">{doc.title}</p>
+                        <p className="text-sm text-gray-500">{doc.size}</p>
+                      </div>
+                      <Button size="sm" asChild>
+                        <a href={documentLinks.finalReports[doc.title]} target="_blank" rel="noopener noreferrer">
+                          <FileText className="w-4 h-4 mr-2" />
+                          View
+                        </a>
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Research Paper */}
+            <Card className="hover:shadow-lg transition-all duration-300 col-span-full">
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                  <Badge variant="default">Available</Badge>
+                </div>
+                <CardTitle className="text-lg text-blue-900">Research Paper</CardTitle>
+                <CardDescription>
+                  Complete research paper with methodology, findings, and conclusions
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-blue-900">Research Paper</p>
+                    <p className="text-sm text-gray-500">7.2 MB</p>
+                  </div>
+                  <Button size="sm" asChild>
+                    <a href={documentLinks.researchPaper} target="_blank" rel="noopener noreferrer">
+                      <FileText className="w-4 h-4 mr-2" />
+                      View
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -776,7 +937,7 @@ export default function ResearchWebsite() {
                 date: "June 30, 2025",
                 slides: 40,
                 duration: "35 minutes",
-                status: "Scheduled",
+                status: "Completed",
                 description: "Complete research findings, conclusions, and recommendations",
               },
             ].map((presentation, index) => (
@@ -809,11 +970,17 @@ export default function ResearchWebsite() {
                   <p className="text-gray-600 mb-4">{presentation.description}</p>
                   <Button
                     variant={presentation.status === "Completed" ? "default" : "outline"}
-                    disabled={presentation.status !== "Completed"}
                     className="w-full"
+                    asChild
                   >
-                    <Download className="w-4 h-4 mr-2" />
-                    {presentation.status === "Completed" ? "Download Slides" : presentation.status}
+                    <a 
+                      href={presentationLinks[presentation.title]} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      {presentation.status === "Completed" ? "View Slides" : presentation.status}
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
