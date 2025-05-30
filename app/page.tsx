@@ -147,7 +147,7 @@ export default function ResearchWebsite() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-800 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-blue-950 rounded-lg flex items-center justify-center">
                 <Moon className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-blue-900">Goodnight</span>
@@ -160,15 +160,15 @@ export default function ResearchWebsite() {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 ${
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg ${
                       activeSection === item.id
-                        ? "bg-purple-200 text-purple-900"
+                        ? "bg-blue-200 text-blue-900"
                         : isScrolled
                           ? "text-blue-900 hover:bg-blue-50"
                           : "text-white hover:bg-white/10"
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
                     <span className="text-sm font-medium">{item.label}</span>
                   </button>
                 )
@@ -179,7 +179,7 @@ export default function ResearchWebsite() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-blue-900 via-purple-800 to-blue-800">
+      <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-950">
         <div className="container mx-auto px-4">
           <div className="text-center text-white">
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-6">
@@ -219,11 +219,13 @@ export default function ResearchWebsite() {
               { icon: Moon, title: "Sleep Quality", desc: "Measuring sleep duration and quality" },
               { icon: Brain, title: "Well-being", desc: "Understanding cognitive effects" },
             ].map((item, index) => (
-              <Card key={index} className="bg-white/10 backdrop-blur-md border-white/20 text-white">
+              <Card key={index} className="bg-white/10 backdrop-blur-md border-white/20 text-white transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-white/20 group">
                 <CardHeader className="text-center">
-                  <item.icon className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
-                  <CardTitle className="text-xl">{item.title}</CardTitle>
-                  <CardDescription className="text-blue-100">{item.desc}</CardDescription>
+                  <div className="transform transition-transform duration-300 group-hover:scale-110">
+                    <item.icon className="w-12 h-12 mx-auto mb-4 text-yellow-300" />
+                  </div>
+                  <CardTitle className="text-xl transition-colors duration-300 group-hover:text-yellow-300">{item.title}</CardTitle>
+                  <CardDescription className="text-blue-100 transition-colors duration-300 group-hover:text-white">{item.desc}</CardDescription>
                 </CardHeader>
               </Card>
             ))}
@@ -236,7 +238,7 @@ export default function ResearchWebsite() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4">Research Foundation</h2>
-            <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-500 mx-auto">
               Comprehensive analysis of existing literature and identification of research gaps in sleep technology studies.
             </p>
           </div>
@@ -266,7 +268,7 @@ export default function ResearchWebsite() {
                     <>
                       Stress increases sleep latency and reduces REM sleep.<br/>
                       Facial emotion recognition using CNNs is emerging in real-time emotion detection.<br/>
-                      <span className="block font-semibold">Zhang et al.:</span> Developed a CNN-based system that accurately detects stress-related facial expressions.
+                      Zhang Developed a CNN-based system that accurately detects stress-related facial expressions.
                     </>
                   ),
                 },
@@ -278,7 +280,7 @@ export default function ResearchWebsite() {
                     <>
                       Emotional support chatbots (e.g., Woebot, Wysa) use CBT techniques to support mental health.<br/>
                       Can provide calming dialogue, track stressors, and suggest sleep-enhancing activities.<br/>
-                      <span className="block font-semibold">Fulmer et al.:</span> Users of emotional chatbots experienced reduced stress and better sleep quality.
+                      Fulmer Got Users of emotional chatbots experienced reduced stress and better sleep quality.
                     </>
                   ),
                 },
@@ -289,7 +291,7 @@ export default function ResearchWebsite() {
                   content: (
                     <>
                       Popular platforms like Fitbit and Duolingo use gamified elements such as streaks and rewards.<br/>
-                      <span className="block font-semibold">Seaborn & Fels:</span> Found increased motivation and retention through gamified systems in health apps.
+                      Seaborn & Fels Found increased motivation and retention through gamified systems in health apps.
                     </>
                   ),
                 },
@@ -300,7 +302,7 @@ export default function ResearchWebsite() {
                   content: (
                     <>
                       Techniques: Neural Networks, Regression, Multi-Task Learning.<br/>
-                      <span className="block font-semibold">Supratak et al.:</span> Used deep learning on EEG for automatic sleep stage classification.<br/>
+                      Supratak Used deep learning on EEG for automatic sleep stage classification.<br/>
                       Multi-modal models using activity, mood, and demographics improve prediction accuracy.
                     </>
                   ),
@@ -317,12 +319,14 @@ export default function ResearchWebsite() {
                   ),
                 },
               ].map((item, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow-md p-6 flex flex-col h-full border border-gray-100">
-                  <div className={`w-12 h-12 flex items-center justify-center rounded-xl mb-4 text-2xl ${item.color}`}>
-                    <item.icon className="w-7 h-7" />
+                <div key={idx} className={`rounded-2xl border p-6 shadow-sm flex flex-col h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-200 group`}> 
+                  <div className="flex items-center mb-3">
+                    <div className={`w-12 h-12 flex items-center justify-center rounded-xl mb-4 text-2xl ${item.color} transform transition-transform duration-300 group-hover:scale-110`}>
+                      <item.icon className="w-7 h-7" />
+                    </div>
+                    <h4 className="font-bold text-lg mb-2 text-blue-900 transition-colors duration-300 group-hover:text-blue-700">{item.title}</h4>
                   </div>
-                  <h4 className="font-bold text-lg mb-2 text-blue-900">{item.title}</h4>
-                  <div className="text-gray-500 text-lg leading-relaxed">{item.content}</div>
+                  <div className="text-gray-500 text-lg leading-relaxed transition-colors duration-300 group-hover:text-gray-700">{item.content}</div>
                 </div>
               ))}
             </div>
@@ -382,16 +386,16 @@ export default function ResearchWebsite() {
                   color: "bg-indigo-50 border-indigo-200",
                 },
               ].map((item, idx) => (
-                <div key={idx} className={`rounded-2xl border ${item.color} p-6 shadow-sm flex flex-col h-full bg-white`}> 
+                <div key={idx} className={`rounded-2xl border p-6 shadow-sm flex flex-col h-full transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-200 group`}> 
                   <div className="flex items-center mb-3">
-                    <span className="text-2xl mr-2">{item.emoji}</span>
-                    <span className="font-bold text-blue-900 text-base">{item.title}</span>
+                    <span className="text-2xl mr-2 transform transition-transform duration-300 group-hover:scale-110">{item.emoji}</span>
+                    <span className="font-bold text-blue-900 text-base transition-colors duration-300 group-hover:text-blue-700">{item.title}</span>
                   </div>
-                  <div className="text-gray-500 mb-3 text-lg">{item.desc}</div>
+                  <div className="text-gray-500 mb-3 text-lg transition-colors duration-300 group-hover:text-gray-700">{item.desc}</div>
                   <div className="flex items-center mt-auto">
-                    <span className="text-lg mr-2">{item.gapIcon}</span>
-                    <span className="font-semibold text-xs px-2 py-1 rounded bg-gray-100 text-blue-800">Gap:</span>
-                    <span className="ml-2 text-lg text-gray-500">{item.gap}</span>
+                    <span className="text-lg mr-2 transform transition-transform duration-300 group-hover:scale-110">{item.gapIcon}</span>
+                    <span className="font-semibold text-xs px-2 py-1 rounded bg-gray-100 text-blue-800 transition-colors duration-300 group-hover:bg-blue-100">Gap:</span>
+                    <span className="ml-2 text-lg text-gray-500 transition-colors duration-300 group-hover:text-gray-700">{item.gap}</span>
                   </div>
                 </div>
               ))}
@@ -402,13 +406,149 @@ export default function ResearchWebsite() {
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Research Problem</h3>
             <div className="max-w-7xl mx-auto px-4">
-              <div className="rounded-2xl bg-blue-50 border border-blue-200 p-8 shadow-sm text-center">
-                <p className="text-xl md:text-2xl text-gray-500 font-medium leading-relaxed">
-                  How can we design a non-intrusive, adaptive, and emotion-aware system that holistically <br />
-                  improves sleep quality among young adults by monitoring bedtime smartphone usage, <br />
-                  providing personalized and interactive interventions, and encouraging healthier sleep habits <br />
-                  through gamified engagement?
-                </p>
+              <div className="relative">
+                {/* Decorative elements */}
+                <div className="absolute -top-6 -left-6 w-12 h-12 text-blue-200 opacity-50">
+                  <Moon className="w-full h-full" />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-12 h-12 text-blue-200 opacity-50">
+                  <Smartphone className="w-full h-full" />
+                </div>
+                
+                {/* Main content card */}
+                <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 p-8 shadow-lg transform transition-all duration-200 hover:shadow-md hover:border-blue-300 group">
+                  {/* Problem statement header */}
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-200 mb-4 transition-transform duration-200 group-hover:bg-blue-100">
+                      <Brain className="w-8 h-8 text-blue-700" />
+                    </div>
+                    <h4 className="text-xl font-semibold text-blue-900 mb-2 transition-colors duration-200 group-hover:text-blue-800">
+                      Core Research Challenge
+                    </h4>
+                    <div className="w-24 h-1 bg-blue-300 mx-auto rounded-full"></div>
+                  </div>
+
+                  {/* Problem statement */}
+                  <div className="space-y-6">
+                    <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed transition-colors duration-200 group-hover:text-gray-700 text-center">
+                      How can we design a non-intrusive, adaptive, and emotion-aware system that holistically 
+                      improves sleep quality among young adults?
+                    </p>
+
+                    {/* Key aspects */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                      {[
+                        {
+                          icon: Smartphone,
+                          title: "Smartphone Usage",
+                          desc: "Monitoring bedtime device habits and their impact"
+                        },
+                        {
+                          icon: Brain,
+                          title: "Emotional Awareness",
+                          desc: "Detecting and responding to user's emotional state"
+                        },
+                        {
+                          icon: Activity,
+                          title: "Sleep Quality",
+                          desc: "Improving overall sleep patterns and duration"
+                        }
+                      ].map((aspect, idx) => (
+                        <div key={idx} className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-blue-100 transition-all duration-200 hover:shadow-sm hover:border-blue-200">
+                          <div className="flex items-center space-x-3 mb-2">
+                            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center transition-colors duration-200 hover:bg-blue-50">
+                              <aspect.icon className="w-5 h-5 text-blue-700" />
+                            </div>
+                            <h5 className="font-semibold text-blue-900 transition-colors duration-200 hover:text-blue-800">{aspect.title}</h5>
+                          </div>
+                          <p className="text-gray-600 text-sm">{aspect.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Research focus */}
+                    <div className="mt-8">
+                      <h5 className="font-semibold text-blue-900 mb-6 flex items-center justify-center text-lg">
+                        <Target className="w-6 h-6 mr-2 text-blue-700" />
+                        Research Focus Areas
+                      </h5>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {[
+                          {
+                            icon: MessageSquare,
+                            title: "Personalized Interventions",
+                            description: "Customized sleep improvement strategies based on individual patterns and preferences",
+                            features: [
+                              "Adaptive chatbot interactions",
+                              "Context-aware suggestions",
+                              "Personalized sleep schedules"
+                            ]
+                          },
+                          {
+                            icon: Brain,
+                            title: "Emotion Detection",
+                            description: "Real-time emotional state monitoring and response system",
+                            features: [
+                              "Facial expression analysis",
+                              "Stress level detection",
+                              "Mood-based interventions"
+                            ]
+                          },
+                          {
+                            icon: Trophy,
+                            title: "Gamified Engagement",
+                            description: "Interactive elements to encourage consistent sleep habits",
+                            features: [
+                              "Achievement system",
+                              "Progress tracking",
+                              "Reward mechanisms"
+                            ]
+                          },
+                          {
+                            icon: Activity,
+                            title: "Sleep Quality Assessment",
+                            description: "Comprehensive monitoring and analysis of sleep patterns",
+                            features: [
+                              "Sleep stage tracking",
+                              "Quality metrics analysis",
+                              "Pattern recognition"
+                            ]
+                          }
+                        ].map((focus, idx) => (
+                          <div 
+                            key={idx} 
+                            className="bg-white/80 backdrop-blur-sm rounded-xl p-5 border border-blue-100 transition-all duration-200 hover:shadow-sm hover:border-blue-200 group"
+                          >
+                            <div className="flex items-start space-x-4">
+                              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center transition-colors duration-200 group-hover:from-blue-50 group-hover:to-blue-100">
+                                <focus.icon className="w-6 h-6 text-blue-700" />
+                              </div>
+                              <div className="flex-1">
+                                <h6 className="font-semibold text-blue-900 text-lg mb-1 transition-colors duration-200 group-hover:text-blue-800">
+                                  {focus.title}
+                                </h6>
+                                <p className="text-gray-600 text-sm mb-3">
+                                  {focus.description}
+                                </p>
+                                <ul className="space-y-2">
+                                  {focus.features.map((feature, featureIdx) => (
+                                    <li 
+                                      key={featureIdx} 
+                                      className="flex items-center text-sm text-gray-600 transition-colors duration-200 group-hover:text-gray-700"
+                                    >
+                                      <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2"></div>
+                                      {feature}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -451,9 +591,9 @@ export default function ResearchWebsite() {
                   desc: "Support both physiological and psychological aspects of sleep health, promoting sustainable improvements in user lifestyle.",
                 },
               ].map((item, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100">
-                  <div className="font-bold text-blue-900 mb-1 text-base">{item.title}</div>
-                  <div className="text-gray-500 text-lg leading-relaxed">{item.desc}</div>
+                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-200 group">
+                  <div className="font-bold text-blue-900 mb-1 text-base transition-colors duration-300 group-hover:text-blue-700">{item.title}</div>
+                  <div className="text-gray-500 text-lg leading-relaxed transition-colors duration-300 group-hover:text-gray-700">{item.desc}</div>
                 </div>
               ))}
             </div>
@@ -542,14 +682,14 @@ export default function ResearchWebsite() {
                   ],
                 },
               ].map((item, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100">
+                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100 transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:border-blue-200 group">
                   <div className="flex items-center mb-2">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold mr-3">{item.step}</span>
-                    <span className="font-bold text-blue-900 text-base">{item.title}</span>
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold mr-3 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-200">{item.step}</span>
+                    <span className="font-bold text-blue-900 text-base transition-colors duration-300 group-hover:text-blue-700">{item.title}</span>
                   </div>
                   <ul className="list-disc pl-12 text-gray-500 text-lg space-y-1">
                     {item.points.map((point, i) => (
-                      <li key={i}>{point}</li>
+                      <li key={i} className="transition-colors duration-300 group-hover:text-gray-700">{point}</li>
                     ))}
                   </ul>
                 </div>
@@ -558,42 +698,75 @@ export default function ResearchWebsite() {
           </div>
 
           {/* Technologies Used */}
-          <div className="mb-4">
+          <div className="mb-0">
             <h3 className="text-2xl font-bold text-blue-900 mb-8 text-center">Technologies Used</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-8 max-w-[1400px] mx-auto px-4">
               {[
                 {
-                  title: "Backend Technologies",
-                  items: ["Node.js", "Flask", "OS (Python Library)"]
+                  name: "Python",
+                  image: "/tech/python.png",
                 },
                 {
-                  title: "Frontend Technologies",
-                  items: ["React.js"]
+                  name: "React",
+                  image: "/tech/react.png",
                 },
                 {
-                  title: "Database",
-                  items: ["MongoDB"]
+                  name: "Node",
+                  image: "/tech/nodejs.png",
                 },
                 {
-                  title: "Deep Learning & Machine Learning Libraries",
-                  items: ["TensorFlow", "Keras", "Scikit-learn (sklearn)", "Pickle"]
+                  name: "TensorFlow",
+                  image: "/tech/tensorflow.png",
                 },
                 {
-                  title: "Computer Vision & Image Processing",
-                  items: ["OpenCV", "Transfer Learning with CNN"]
+                  name: "Flask",
+                  image: "/tech/flask.png",
                 },
                 {
-                  title: "Data Handling & Analysis",
-                  items: ["NumPy", "Pandas"]
+                  name: "Keras",
+                  image: "/tech/keras.png",
                 },
-              ].map((cat, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow p-6 border border-gray-100 flex flex-col h-full">
-                  <div className="font-bold text-blue-900 mb-2 text-base">{cat.title}</div>
-                  <ul className="list-disc pl-5 text-gray-500 text-lg space-y-1">
-                    {cat.items.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+                {
+                  name: "MongoDB",
+                  image: "/tech/mongodb.png",
+                },
+                {
+                  name: "OpenCV",
+                  image: "/tech/opencv.png",
+                },
+                {
+                  name: "Docker",
+                  image: "/tech/docker.png",
+                },
+                {
+                  name: "NumPy",
+                  image: "/tech/numpy.png",
+                },
+                {
+                  name: "Pandas",
+                  image: "/tech/pandas.png",
+                },
+                {
+                  name: "Google Colab",
+                  image: "/tech/colab.png",
+                }
+              ].map((tech, idx) => (
+                <div 
+                  key={idx} 
+                  className="flex flex-col items-center p-2 text-center transition-all duration-200 group"
+                >
+                  <div className="w-32 h-32 rounded-full bg-white shadow-md flex items-center justify-center mb-3 transition-transform duration-200 group-hover:scale-110 overflow-hidden">
+                    <Image 
+                      src={tech.image} 
+                      alt={`${tech.name} logo`}
+                      width={96}
+                      height={96}
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 transition-colors duration-200 group-hover:text-blue-700">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
@@ -603,18 +776,28 @@ export default function ResearchWebsite() {
       </section>
 
       {/* Milestones Section */}
-      <section id="milestones" className="py-12 bg-white">
+      <section id="milestones" className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="bg-blue-100 text-blue-700 mb-4">Project Timeline</Badge>
             <h2 className="text-4xl font-bold text-blue-900 mb-6">Research Milestones</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 mx-auto">
               Track the progress of our research project through key assessment points and deliverables.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="relative max-w-full mx-auto px-4 pt-8">
+            {/* Vertical line connecting milestones */}
+            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-blue-300 md:left-1/2 md:-translate-x-1/2"></div>
+
             {[
+              {
+                title: "TAF Presentation",
+                date: "March 2025",
+                status: "Completed",
+                marks: "10%",
+                description: "Topic Assessment Form presentation to finalize the research topic and scope.",
+              },
               {
                 title: "Project Proposal",
                 date: "March 2025",
@@ -623,85 +806,102 @@ export default function ResearchWebsite() {
                 description: "Initial research proposal outlining objectives, methodology, and expected outcomes.",
               },
               {
-                title: "Progress Presentation 1",
+                title: "Progress Presentation I",
                 date: "April 2025",
                 status: "Completed",
                 marks: "20%",
                 description: "First progress review covering literature survey and preliminary findings.",
               },
               {
-                title: "Progress Presentation 2",
+                title: "Progress Presentation II",
                 date: "May 2025",
-                status: "In Progress",
+                status: "Completed",
                 marks: "25%",
                 description: "Second progress review with data collection results and analysis.",
               },
-              {
-                title: "Final Assessment",
+               {
+                title: "Research Paper",
                 date: "June 2025",
-                status: "Upcoming",
-                marks: "30%",
-                description: "Complete research findings, conclusions, and recommendations.",
+                status: "Completed",
+                marks: "N/A",
+                description: "Submission of the final research paper detailing the project, findings, and conclusions.",
               },
               {
-                title: "Viva Voce",
+                title: "Final Report",
+                date: "June 2025",
+                status: "Completed",
+                marks: "N/A",
+                description: "Submission of the comprehensive final report document.",
+              },
+              {
+                title: "Website Assessment",
+                date: "June 2025",
+                status: "Completed",
+                marks: "N/A",
+                description: "Assessment of the research project website.",
+              },
+              {
+                title: "Final Presentation & Viva",
                 date: "July 2025",
-                status: "Upcoming",
-                marks: "10%",
-                description: "Oral examination and defense of research findings.",
+                status: "Completed",
+                marks: "40%",
+                description: "Final presentation and oral defense of the research findings and project.",
+              },
+              {
+                title: "Logbook",
+                date: "Ongoing",
+                status: "Completed",
+                marks: "N/A",
+                description: "Maintain a detailed logbook documenting research activities and progress.",
               },
             ].map((milestone, index) => (
-              <Card key={index} className="mb-6 hover:shadow-lg transition-all duration-300">
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                          milestone.status === "Completed"
-                            ? "bg-green-100"
-                            : milestone.status === "In Progress"
-                              ? "bg-yellow-100"
-                              : "bg-gray-100"
-                        }`}
-                      >
-                        <Calendar
-                          className={`w-6 h-6 ${
-                            milestone.status === "Completed"
-                              ? "text-green-600"
-                              : milestone.status === "In Progress"
-                                ? "text-yellow-600"
-                                : "text-gray-600"
-                          }`}
-                        />
-                      </div>
-                      <div>
-                        <CardTitle className="text-xl text-blue-900">{milestone.title}</CardTitle>
-                        <div className="flex items-center space-x-4 mt-1">
-                          <span className="text-sm text-gray-500">{milestone.date}</span>
-                          <Badge
-                            variant={
-                              milestone.status === "Completed"
-                                ? "default"
-                                : milestone.status === "In Progress"
-                                  ? "secondary"
-                                  : "outline"
-                            }
-                          >
-                            {milestone.status}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-purple-800">{milestone.marks}</div>
-                      <div className="text-sm text-gray-500">Weight</div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{milestone.description}</p>
-                </CardContent>
-              </Card>
+              <div key={index} className="mb-8 flex w-full items-center md:justify-between md:odd:flex-row-reverse group relative">
+                
+                 {/* Date and Status (Left on even, Right on odd on large screens) */}
+                <div className="flex-grow-0 flex-shrink-0 w-full md:w-[calc(50%-4rem)] text-left md:text-right group-odd:md:text-left pl-0 md:pl-8 group-odd:md:pr-8 group-odd:md:pl-0 z-10">
+                   {milestone.date && <span className="block text-sm font-semibold text-blue-600">{milestone.date}</span>}
+                   <Badge
+                      variant={
+                        milestone.status === "Completed"
+                          ? "default"
+                          : milestone.status === "In Progress"
+                            ? "secondary"
+                            : "outline"
+                      }
+                      className="mt-1"
+                   >
+                      {milestone.status}
+                   </Badge>
+                </div>
+
+                 {/* Timeline Dot and Connecting Lines */}
+                 {/* Adjusted spacing for dot container */}
+                <div className="flex-shrink-0 w-8 md:w-16 flex items-center justify-center relative z-20">
+                  {/* Dot */}
+                  <div className={`w-5 h-5 rounded-full border-4 ${
+                     milestone.status === "Completed" ? 'border-green-500 bg-white' :
+                     milestone.status === "In Progress" ? 'border-yellow-500 bg-white' :
+                     'border-gray-400 bg-white'
+                  } z-20`}></div>
+                  {/* Horizontal connecting lines (visible on medium and larger screens) */}
+                  <div className="hidden md:block absolute w-8 h-px bg-gray-300 top-1/2 transform -translate-y-1/2 group-odd:right-0 group-even:left-0"></div>
+                </div>
+
+                 {/* Milestone Card (Right on even, Left on odd on large screens) */}
+                <Card className="flex-grow-0 flex-shrink-0 w-full md:w-[calc(50%-4rem)] p-4 shadow-md transition-all duration-300 hover:shadow-lg z-10">
+                   <CardHeader className="p-0 mb-2">
+                      <CardTitle className="text-lg text-blue-900">{milestone.title}</CardTitle>
+                   </CardHeader>
+                   {milestone.description && (
+                     <CardContent className="p-0 text-gray-700 text-sm mb-2">
+                         {milestone.description}
+                     </CardContent>
+                   )}
+                   {milestone.marks && (
+                     <div className="text-sm font-semibold text-purple-800">Marks: {milestone.marks}</div>
+                   )}
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -941,10 +1141,10 @@ export default function ResearchWebsite() {
                 description: "Complete research findings, conclusions, and recommendations",
               },
             ].map((presentation, index) => (
-              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:border-blue-200 group">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <Presentation className="w-8 h-8 text-purple-800" />
+                    <Presentation className="w-8 h-8 text-blue-800 transform transition-transform duration-300 group-hover:scale-110" />
                     <Badge
                       variant={
                         presentation.status === "Completed"
@@ -953,12 +1153,13 @@ export default function ResearchWebsite() {
                             ? "secondary"
                             : "outline"
                       }
+                      className="transition-colors duration-300 group-hover:bg-blue-100"
                     >
                       {presentation.status}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl text-blue-900">{presentation.title}</CardTitle>
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+                  <CardTitle className="text-xl text-blue-900 transition-colors duration-300 group-hover:text-blue-700">{presentation.title}</CardTitle>
+                  <div className="flex items-center space-x-4 text-sm text-gray-500 transition-colors duration-300 group-hover:text-gray-700">
                     <span>{presentation.date}</span>
                     <span>•</span>
                     <span>{presentation.slides} slides</span>
@@ -967,10 +1168,10 @@ export default function ResearchWebsite() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4">{presentation.description}</p>
+                  <p className="text-gray-600 mb-4 transition-colors duration-300 group-hover:text-gray-800">{presentation.description}</p>
                   <Button
                     variant={presentation.status === "Completed" ? "default" : "outline"}
-                    className="w-full"
+                    className="w-full transition-all duration-300 hover:scale-105 hover:shadow-md"
                     asChild
                   >
                     <a 
@@ -978,7 +1179,7 @@ export default function ResearchWebsite() {
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      <Download className="w-4 h-4 mr-2" />
+                      <Download className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:scale-110" />
                       {presentation.status === "Completed" ? "View Slides" : presentation.status}
                     </a>
                   </Button>
@@ -990,12 +1191,12 @@ export default function ResearchWebsite() {
       </section>
 
       {/* About Us Section */}
-      <section id="about" className="py-20 bg-gradient-to-br from-purple-50 to-blue-50">
+      <section id="about" className="py-20 bg-gradient-to-br from-blue-100 to-blue-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <Badge className="bg-blue-100 text-blue-700 mb-4">Research Team</Badge>
             <h2 className="text-4xl font-bold text-blue-900 mb-6">About Us</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 mx-auto">
               Meet the dedicated research team working on understanding the impact of bedtime smartphone use on sleep
               quality.
             </p>
@@ -1033,35 +1234,35 @@ export default function ResearchWebsite() {
                   googleScholar: "#",
                 },
               ].map((member, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 w-72">
+                <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:border-blue-200 group">
                   <CardHeader>
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                      <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full" />
+                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden transform transition-transform duration-300 group-hover:scale-110">
+                      <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" />
                     </div>
-                    <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
-                    <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
-                    <CardDescription className="text-gray-600">{member.degree}</CardDescription>
+                    <CardTitle className="text-xl text-blue-900 transition-colors duration-300 group-hover:text-blue-700">{member.name}</CardTitle>
+                    <CardDescription className="text-blue-800 font-medium transition-colors duration-300 group-hover:text-blue-600">{member.role}</CardDescription>
+                    <CardDescription className="text-gray-600 transition-colors duration-300 group-hover:text-gray-800">{member.degree}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-center space-x-4 mb-4">
                       {member.email && member.email.includes('@') && (
                         <a href={`mailto:${member.email}`}
-                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                          <Mail className="w-5 h-5" />
+                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-all duration-300 hover:scale-110">
+                          <Mail className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                           <span className="text-sm">Email</span>
                         </a>
                       )}
                       {member.linkedin && (
                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                          <Linkedin className="w-5 h-5" />
+                           className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-all duration-300 hover:scale-110">
+                          <Linkedin className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                           <span className="text-sm">LinkedIn</span>
                         </a>
                       )}
                       {member.googleScholar && (
                          <a href={member.googleScholar} target="_blank" rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                              <BookOpen className="w-5 h-5" />
+                            className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-all duration-300 hover:scale-110">
+                              <BookOpen className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                               <span className="text-sm">Scholar</span>
                             </a>
                         )}
@@ -1108,28 +1309,28 @@ export default function ResearchWebsite() {
                 linkedin: "http://www.linkedin.com/in/hiruni-siyambalapitiya-80a2a0265",
               },
             ].map((member, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300">
+              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:border-blue-200 group">
                 <CardHeader>
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-                    <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full" />
+                  <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden transform transition-transform duration-300 group-hover:scale-110">
+                    <Image src={member.image} alt={`${member.name}'s photo`} width={128} height={128} className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <CardTitle className="text-xl text-blue-900">{member.name}</CardTitle>
-                  <CardDescription className="text-purple-800 font-medium">{member.role}</CardDescription>
-                  <CardDescription className="text-gray-600">{member.degree}</CardDescription>
+                  <CardTitle className="text-xl text-blue-900 transition-colors duration-300 group-hover:text-blue-700">{member.name}</CardTitle>
+                  <CardDescription className="text-blue-800 font-medium transition-colors duration-300 group-hover:text-blue-600">{member.role}</CardDescription>
+                  <CardDescription className="text-gray-600 transition-colors duration-300 group-hover:text-gray-800">{member.degree}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-center space-x-4 mb-4">
                     {member.email && member.email.includes('@') && (
                       <a href={`mailto:${member.email}`}
-                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                        <Mail className="w-5 h-5" />
+                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-all duration-300 hover:scale-110">
+                        <Mail className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                         <span className="text-sm">Email</span>
                       </a>
                     )}
                     {member.linkedin && (
                       <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
-                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors duration-200">
-                        <Linkedin className="w-5 h-5" />
+                         className="inline-flex items-center justify-center space-x-1 text-blue-600 hover:text-blue-800 transition-all duration-300 hover:scale-110">
+                        <Linkedin className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
                         <span className="text-sm">LinkedIn</span>
                       </a>
                     )}
@@ -1147,118 +1348,72 @@ export default function ResearchWebsite() {
           <div className="text-center mb-16">
             <Badge className="bg-white/20 text-white mb-4">Get in Touch</Badge>
             <h2 className="text-4xl font-bold text-white mb-6">Contact Us</h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mx-auto">
               Have questions about our research? Want to collaborate or learn more? We'd love to hear from you.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
+          <div className="flex flex-row justify-around items-start space-x-12">
+            
+              <div className="flex items-start space-x-4 w-full md:w-auto">
                 <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center">
                   <Mail className="w-6 h-6 text-blue-900" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-semibold text-white mb-2">Email Us</h3>
                   <p className="text-blue-100 mb-2">For research inquiries and collaboration</p>
-                  <a href="mailto:sleepresearch@university.edu" className="text-yellow-300 hover:text-yellow-200">
+                  <a href="mailto:goodnight@gmail.com" className="text-yellow-300 hover:text-yellow-200">
                     goodnight@gmail.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start space-x-4 w-full md:w-auto">
                 <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center">
                   <Phone className="w-6 h-6 text-blue-900" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-semibold text-white mb-2">Phone</h3>
                   <p className="text-blue-100 mb-2">Research department direct line</p>
-                  <a href="tel:+1234567890" className="text-yellow-300 hover:text-yellow-200">
-                    +1 (234) 567-8900
+                  <a href="tel:(011) 754 48 01" className="text-yellow-300 hover:text-yellow-200">
+                    (011) 754 48 01
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
+              <div className="flex items-start space-x-4 w-full md:w-auto">
                 <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center">
                   <MapPin className="w-6 h-6 text-blue-900" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-xl font-semibold text-white mb-2">Location</h3>
                   <p className="text-blue-100 mb-2">Research facility address</p>
                   <p className="text-yellow-300">
-                    University Research Center
+                    SLIIT Malabe Campus
                     <br />
-                    123 Academic Drive
+                    New Kandy Rd
                     <br />
-                    Research City, RC 12345
+                    Malabe 10115
                   </p>
                 </div>
               </div>
-            </div>
-
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
-              <CardHeader>
-                <CardTitle className="text-white">Send us a message</CardTitle>
-                <CardDescription className="text-blue-100">
-                  Fill out the form below and we'll get back to you within 24 hours.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">Name</label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-white mb-2">Email</label>
-                    <input
-                      type="email"
-                      className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-white mb-2">Subject</label>
-                  <input
-                    type="text"
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                    placeholder="Research inquiry"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-white mb-2">Message</label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                    placeholder="Tell us about your inquiry..."
-                  />
-                </div>
-                <Button className="w-full bg-yellow-400 text-blue-900 hover:bg-yellow-300">Send Message</Button>
-              </CardContent>
-            </Card>
+            
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-blue-950 text-white py-8">
+      <footer className="bg-slate-950 text-white py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-800 to-blue-800 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-900 to-slate-950 rounded-lg flex items-center justify-center">
                 <Moon className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold">Goodnight Research Project</span>
             </div>
             <div className="text-center md:text-right">
-              <p className="text-blue-200">© 2025 University Research Team. All rights reserved.</p>
+              <p className="text-blue-200">© 2025 Goodnight. All rights reserved.</p>
               <p className="text-sm text-blue-300 mt-1">IT4010 Research Project - Faculty of Computing</p>
             </div>
           </div>
